@@ -1,20 +1,21 @@
 <% flash[:notice] = nil %>
 
-var modal_opts = { closeHTML : '<div>[x] CLOSE</div>', 
-
-      containerCss : { height:80 },
-
-      onOpen: function (dialog) {
-                        dialog.overlay.fadeIn('fast', function() {
-                            dialog.data.show();
-                            dialog.container.fadeIn('fast');
-                        });
-              }
-    };
-
 <% if @errors.empty? %>
-    $('<div id="modal-notice"><h1><%= t("you_have_been_subscribed") %></h1></div>').dialog(modal_opts);
+	$.fancybox(
+		'<h1><%= t("you_have_been_subscribed") %></h1>',
+		{
+			'centerOnScroll' : true,
+			'autoDimensions' : false,
+			width : 380,
+			height: 200
+		}
+	);
 <% else %>
-    $('<div id="modal-notice"><h1>ERROR:</h1> <%= @errors.join(' / ') %></div>').dialog(modal_opts);
+	$.fancybox(
+		'<h1><%= @errors.join(" , ") %></h1>',
+		{
+			'centerOnScroll' : true
+		}
+	);
 <% end %>
 
