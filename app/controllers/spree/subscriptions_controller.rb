@@ -34,4 +34,11 @@ class Spree::SubscriptionsController < Spree::BaseController
       wants.html
     end
   end
+  
+  def success
+    @errors = []
+    flash[:newsletter_subscription_tracking] = "nothing special"
+    render "create"
+  end
+  
 end
