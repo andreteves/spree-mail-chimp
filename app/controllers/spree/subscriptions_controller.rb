@@ -22,6 +22,10 @@ class Spree::SubscriptionsController < Spree::BaseController
       else
         begin
           hominid.list_subscribe(Spree::Config.get(:mailchimp_list_id), params[:email], {})
+          begin
+            NewsletterEmail.create(email: params[:email])
+            rescue => error
+          end
           flash[:newsletter_subscription_tracking] = "nothing special"
         rescue
           @errors << t('invalid_email_address')
