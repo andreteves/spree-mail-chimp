@@ -23,7 +23,7 @@ class Spree::SubscriptionsController < Spree::BaseController
         begin
           hominid.list_subscribe(Spree::Config.get(:mailchimp_list_id), params[:email], {})
           begin
-            NewsletterEmail.create(email: params[:email])
+            NewsletterEmail.create(email: params[:email], utm_source: cookies[:utm_source], utm_campaign: cookies[:utm_campaign], utm_medium: cookies[:utm_medium])
             rescue => error
           end
           flash[:newsletter_subscription_tracking] = "nothing special"

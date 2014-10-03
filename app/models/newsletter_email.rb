@@ -1,3 +1,3 @@
 class NewsletterEmail < ActiveRecord::Base
-  attr_accessible :email
+  attr_accessible :email, :utm_source, :utm_campaign, :utm_medium
 end
