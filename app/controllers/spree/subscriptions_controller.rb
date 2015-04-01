@@ -21,7 +21,7 @@ class Spree::SubscriptionsController < Spree::BaseController
         @errors << t('that_address_is_already_subscribed')
       else
         begin
-          hominid.list_subscribe(Spree::Config.get(:mailchimp_list_id), params[:email], {'Perfil' => params[:user_type]})
+          hominid.list_subscribe(Spree::Config.get(:mailchimp_list_id), params[:email], {'USER_TYPE' => params[:user_type], 'UBDATE' => Date.today})
           NewsletterEmail.create(email: params[:email], utm_source: cookies[:utm_source], utm_campaign: cookies[:utm_campaign], utm_medium: cookies[:utm_medium], profile: params[:user_type])
           flash[:newsletter_subscription_tracking] = "nothing special"
         rescue
